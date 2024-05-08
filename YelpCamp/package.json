@@ -1,7 +1,7 @@
 {
-  "name": "projectarea",
+  "name": "yelpcamp",
   "version": "1.0.0",
-  "description": "",
+  "description": "It's basically a simple webApp where you can setup your own Yelp Camp sites and advertise it...to earn money and attention from tourist..",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
