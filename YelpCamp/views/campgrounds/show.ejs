@@ -1,14 +1,14 @@
 
 <%layout('layouts/boilerplate') %>
   
-  <h1><%= loc.title %></h1>
+  <h1><%= loca.title %></h1>
   <div>
-    <img src="<%= loc.image %>" alt="IMAGE HERE ">
+    <img src="<%= loca.image %>" alt="IMAGE HERE ">
   </div>
-  <h2><%= loc.location %></h2>
-  <h4><%= loc.description %></h4>
-  <a href="/campgrounds/<%= loc.id %>/edit">Edit this</a>
-  <form action="/campgrounds/<%= loc.id %>?_method=DELETE" method="post">
+  <h2><%= loca.location %></h2>
+  <h4><%= loca.description %></h4>
+  <a href="/campgrounds/<%= loca.id %>/edit">Edit this</a>
+  <form action="/campgrounds/<%= loca.id %>?_method=DELETE" method="post">
     <button>Delete</button>
   </form>
  

@@ -44,8 +44,11 @@ app.post('/campgrounds',async(req,res)=>{
   res.redirect(`/campgrounds/${newPlace.id}`);
 })
 app.get('/campgrounds/:id',async(req,res)=>{
-  const loc=await camp.findById(req.params.id);
-  res.render('campgrounds/show',{loc});
+ 
+    const loca = await camp.findById(req.params.id);
+   
+    res.render('campgrounds/show', { loca });
+  
 })
 app.get('/campgrounds/:id/edit',async(req,res)=>{
   const {id} =req.params;
