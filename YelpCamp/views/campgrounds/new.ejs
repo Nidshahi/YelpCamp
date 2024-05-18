@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NEW</title>
-</head>
-<body>
+<%layout('layouts/boilerplate') %>
   <h1>FORM</h1>
   <form action="/campgrounds" method="post">
     <div>
@@ -16,7 +9,17 @@
       <label for="name">Enter the location :</label>
       <input type="text" id="name" name="camp[location]">
     </div>
+    <div>
+      <label for="nam">Enter the price :</label>
+      <input type="number" id="nam" name="camp[price]">
+    </div>
+    <div>
+      <label for="na">Enter image URL: :</label>
+      <input type="text" id="na" name="camp[image]">
+    </div>
+    <div>
+      <label for="n">Description: :</label>
+      <input type="text" id="n" name="camp[desctiption]">
+    </div>
     <button>Submit</button>
   </form>
-</body>
-</html>

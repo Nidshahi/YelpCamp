@@ -1,5 +1,6 @@
 const mongoose= require('mongoose');
 const camp = require('../models/campground');
+const fetch = require('node-fetch');
 const cities = require('./cities');
 const {descriptors,places} = require('./seedHelpers');
 
@@ -11,16 +12,35 @@ db.on("error",console.error.bind(console,"connection error:"));
 db.once("open",()=>{
   console.log("Database connected");
 });
+const fetchRandomPhoto = async () => {
+  const response = await fetch('https://api.unsplash.com/photos/random', {
+    headers: {
+      Authorization: 'Client-ID YOUR_ACCESS_KEY'
+    }
+  });
+  const data = await response.json();
+  return data.urls.small;
+};
+
+
 const seedRandom = (array)=>array[Math.floor(Math.random()*array.length)];
 const Data = async()=>{
   try{
     await camp.deleteMany({});
-  for(let i = 0 ; i < 50;i++){
-     randomCity=Math.floor(Math.random()*1000);
-     const newCamp = new camp({
-      location:`${cities[randomCity].city},${cities[randomCity].state}`,
-      title:`${seedRandom(descriptors)}${seedRandom(places)}`
-     })
+    for (let i = 0; i < 50; i++) {
+      const randomCity = Math.floor(Math.random() * 1000);
+      const price = Math.floor(Math.random() * 40) + 10;
+
+      // Fetch the random photo URL
+      const image = await fetchRandomPhoto();
+
+      const newCamp = new camp({
+        location: `${cities[randomCity].city},${cities[randomCity].state}`,
+        title: `${seedRandom(descriptors)} ${seedRandom(places)}`,
+        image: image, // Use the fetched image URL
+        description: 'This is a sample description for the campground.',
+        price
+      });
      await newCamp.save();
   }
     console.log('data successfully seeded');

@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Edit</title>
-</head>
-<body>
+<%layout('layouts/boilerplate') %>
   <h1>Edit the Details</h1>
   <form action="/campgrounds/<%= place.id %>?_method=PUT" method="post">
     <div>
@@ -14,9 +7,20 @@
     </div>
     <div>
       <label for="loc">Enter loaction:</label>
-      <input type="text" value="<%= place.location %>" id="loc" name="camp[location]">
+      <input type="number" value="<%= place.location %>" id="loc" name="camp[location]">
     </div>
+    <div>
+      <label for="price">Enter price:</label>
+      <input type="text" value="<%= place.price %>" id="price" name="camp[price]">
+    </div>
+    <div>
+      <label for="img">Enter image URL:</label>
+      <input type="text" value="<%= place.image %>" id="img" name="camp[image]">
+    </div>
+    <div>
+      <label for="des">Enter description:</label>
+      <input type="text" value="<%= place.description %>" id="des" name="camp[description]">
+    </div>
+
     <button>Submit</button>
   </form>
-</body>
-</html>

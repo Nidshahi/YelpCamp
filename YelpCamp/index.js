@@ -4,6 +4,7 @@ const path = require('path');
 const mongoose= require('mongoose');
 const camp = require('./models/campground');
 const methodOverride=require('method-override');
+const ejsMate=require('ejs-mate');
 //This line establishes a connection to the MongoDB database named "YelpApp" running on the local machine at port 27017. 
 mongoose.connect('mongodb://127.0.0.1:27017/YelpApp');
 //This line creates a reference to the database connection object returned by mongoose.connection. This object allows you to listen for events and interact with the database.
@@ -21,6 +22,7 @@ app.set('view engine','ejs');
 app.set('views',path.join(__dirname,'views'));
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
+app.engine('ejs',ejsMate);
 
 app.get('/',(req,res)=>{
   res.render('home');
@@ -53,9 +55,9 @@ app.get('/campgrounds/:id/edit',async(req,res)=>{
 app.put('/campgrounds/:id',async(req,res)=>{
   const { id } = req.params;
   console.log(req.body);
-  const { title, location } = req.body.camp; 
+  const { title, location ,description,image,price } = req.body.camp; 
   try {
-    const updatedCampground = await camp.findByIdAndUpdate(id, { title, location },{runValidators:true}, { new: true });
+    const updatedCampground = await camp.findByIdAndUpdate(id, { title, location,description,image,price },{runValidators:true}, { new: true });
     res.redirect(`/campgrounds/${updatedCampground.id}`);
   } catch (error) {
     console.error(error);

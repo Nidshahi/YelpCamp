@@ -1,16 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SHOW</title>
-</head>
-<body>
+
+<%layout('layouts/boilerplate') %>
+  
   <h1><%= loc.title %></h1>
+  <div>
+    <img src="<%= loc.image %>" alt="">
+  </div>
   <h2><%= loc.location %></h2>
+  <h4><%= loc.description %></h4>
   <a href="/campgrounds/<%= loc.id %>/edit">Edit this</a>
   <form action="/campgrounds/<%= loc.id %>?_method=DELETE" method="post">
     <button>Delete</button>
   </form>
-</body>
-</html>
