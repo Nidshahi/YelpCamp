@@ -5,7 +5,7 @@ const cities = require('./cities');
 const {descriptors,places} = require('./seedHelpers');
 
 
-mongoose.connect('mongodb://127.0.0.1:27017/YelpApp');
+mongoose.connect('mongodb://127.0.0.1:27017/Yelp-App');
 const db = mongoose.connection;
 //on is used for recurring events, like handling errors that might happen multiple times,
 db.on("error",console.error.bind(console,"connection error:"));

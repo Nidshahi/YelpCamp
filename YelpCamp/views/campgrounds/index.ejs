@@ -1,29 +1,25 @@
-<%layout('layouts/boilerplate') %>
-  <h1>Campground Names</h1>
- 
-    <% for(let c of Camp){ %>
-      <main class="container mb-2">
-        <div class="card" style="width: 23 rem;">
-          <div class="row" >
-            <div class="col-md-4 ">
-              <img class="img-fluid object-fit-scale" src="<%= c.image %>" alt="" >
-            </div>
-            <div class="col-md-8">
-              <div class="card-body">
-                <div class="card-title fs-2"><%= c.title %></div>
-                <div class="card-text fs-4 text-danger"><%= c.description %></div>
-                <p class="card-text fs-5">
-                  <small class="text-muted"><%= c.location %></small>
+<% layout('layouts/boilerplate')%>
+
+<h1>All Campgrounds</h1>
+<div>
+    <a href="/campgrounds/new">Add Campground</a>
+</div>
+<% for (let campground of campgrounds){%>
+<div class="card" mb-3>
+    <div class="row">
+        <div class="col-md-4">
+            <img class="img-fluid" alt="" src="<%=campground.image%>">
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h5 class="card-title"><%= campground.title %> </h5>
+                <p class="card-text"><%= campground.description %></p>
+                <p class="card-text">
+                    <small class="text-muted"><%= campground.location%></small>
                 </p>
-                <a class="btn btn-primary d-inline" href="/campgrounds/<%= c._id %>">View</a>
-              </div>
-              
+                <a class="btn btn-primary" href="/campgrounds/<%=campground._id%>">View <%=campground.title%></a>
             </div>
-          </div>
-         </div>
-        </main>
-     
-      <% } %>
- 
-  <a href="/campgrounds/new">Make new Camp</a>
-  <!-- In MongoDB, the unique identifier field is named _id, not id. So, you should access it as c._id instead of c.id. -->
+        </div>
+    </div>
+</div>
+<% }%>

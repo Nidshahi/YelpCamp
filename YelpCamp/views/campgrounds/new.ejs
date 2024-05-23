@@ -1,41 +1,54 @@
-<%layout('layouts/boilerplate') %>
-  
-  <main class="container mt-3">
-    <h1 class="text-center"> New Campground</h1>
-    <form action="/campgrounds" method="post">
-      <div class="row">
-        <!-- //col-6 specifies that the content block occupies 6 columns, and offset-3 means that it is pushed to the right by 3 columns.  -->
-        <div class="col-6 offset-3">
-          <div class="mb-3">
-            <label for="formGroupExampleInput" class="form-label">Enter the title</label>
-            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="The Orchards"name="camp[title]">
-          </div>
-          <div class="mb-3">
-            <label for="formGroupExampleInput2" class="form-label">Enter the location</label>
-            <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Muzaffarpur,Bihar"name="camp[location]">
-          </div>
-          <div class="mb-3">
-            <label for="formGroupExampleInput2" class="form-label">Enter the price</label>
-            <div class="input-group">
-              <span class="input-group-text" id="price-label">$</span>
-              <input type="number" class="form-control" id="formGroupExampleInput2" placeholder="$0.00" name="camp[price]" aria-describedby="price-label">
+<% layout('layouts/boilerplate')%>
+<div class="row">
+    <h1 class="text-center">New Campground</h1>
+    <div class="col-6 offset-3">
+        <form action="/campgrounds" method="POST" novalidate class="validate-form">
+            <div class="mb-3">
+                <label class="form-label" for="title">Title</label>
+                <input class="form-control" type="text" id="title" name="campground[title]" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
             </div>
             
-          </div>
-          <div class="mb-3">
-            <label for="formGroupExampleInput2" class="form-label">Image URL</label>
-            <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="http://" name="camp[image]">
-          </div>
-          <div class="mb-3">
-            <label for="formGroupExampleInput2" class="form-label">Description:</label>
-            <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="A place you will never forget" name="camp[desctiption]">
-          </div>
-          
-            <button type="submit" class="btn btn-primary btn-lg ">SUBMIT</button>
-          
-        </div>
-      </div>
-    </form>
-    
-  </main>
-  
+            <div class="mb-3">
+                <label class="form-label" for="location">Location</label>
+                <input class="form-control" type="text" id="location" name="campground[location]" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="image">Image Url</label>
+                <input class="form-control" type="url" id="image" name="campground[image]" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="price">Campground Price</label>
+                <div class="input-group">
+                    <span class="input-group-text" id="price-label">$</span>
+                    <input type="text" class="form-control" id="price" placeholder="0.00" aria-label="price"
+                        aria-describedby="price-label" name="campground[price]" required>
+                </div>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="description">Description</label>
+                <textarea class="form-control" type="text" id="description" name="campground[description]"
+                    required></textarea>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <button class="btn btn-success">Add Campground</button>
+            </div>
+        </form>
+        <a href="/campgrounds">All Campgrounds</a>
+    </div>
+</div>

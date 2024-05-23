@@ -9,5 +9,5 @@ const camp=new campSchema({
   location:String
 });
 
-const Camp=mongoose.model('Camp',camp);
+const Camp=mongoose.model('Campground',camp);
 module.exports=Camp;
