@@ -1,8 +1,29 @@
 <%layout('layouts/boilerplate') %>
   <h1>Campground Names</h1>
-  <ul>
+ 
     <% for(let c of Camp){ %>
-      <a href="/campgrounds/<%= c.id %>"><%= c.title %></a><br>
+      <main class="container mb-2">
+        <div class="card" style="width: 23 rem;">
+          <div class="row" >
+            <div class="col-md-4 ">
+              <img class="img-fluid object-fit-scale" src="<%= c.image %>" alt="" >
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <div class="card-title fs-2"><%= c.title %></div>
+                <div class="card-text fs-4 text-danger"><%= c.description %></div>
+                <p class="card-text fs-5">
+                  <small class="text-muted"><%= c.location %></small>
+                </p>
+                <a class="btn btn-primary d-inline" href="/campgrounds/<%= c._id %>">View</a>
+              </div>
+              
+            </div>
+          </div>
+         </div>
+        </main>
+     
       <% } %>
-  </ul>
+ 
   <a href="/campgrounds/new">Make new Camp</a>
+  <!-- In MongoDB, the unique identifier field is named _id, not id. So, you should access it as c._id instead of c.id. -->

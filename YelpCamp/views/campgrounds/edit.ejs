@@ -1,26 +1,39 @@
 <%layout('layouts/boilerplate') %>
-  <h1>Edit the Details</h1>
-  <form action="/campgrounds/<%= place.id %>?_method=PUT" method="post">
-    <div>
-      <label for="name">Enter name:</label>
-      <input type="text" value="<%= place.title %>" id="name" name="camp[title]">
-    </div>
-    <div>
-      <label for="loc">Enter loaction:</label>
-      <input type="number" value="<%= place.location %>" id="loc" name="camp[location]">
-    </div>
-    <div>
-      <label for="price">Enter price:</label>
-      <input type="text" value="<%= place.price %>" id="price" name="camp[price]">
-    </div>
-    <div>
-      <label for="img">Enter image URL:</label>
-      <input type="text" value="<%= place.image %>" id="img" name="camp[image]">
-    </div>
-    <div>
-      <label for="des">Enter description:</label>
-      <input type="text" value="<%= place.description %>" id="des" name="camp[description]">
-    </div>
 
-    <button>Submit</button>
+
+<main class="container mt-4">
+  <form action="/campgrounds/<%= place._id %>?_method=PUT" method="post">
+    <div class="row">
+      <div class="col-6 offset-3">
+        <h1 class="text-center">Edit Form</h1>
+        <div class="mb-3">
+          <label for="formGroupExampleInput" class="form-label">Enter the title</label>
+          <input type="text" class="form-control" id="formGroupExampleInput" name="camp[title]" value="<%= place.title %>">
+        </div>
+        <div class="mb-3">
+          <label for="formGroupExampleInput2" class="form-label">Enter the location</label>
+          <input type="text" class="form-control" id="formGroupExampleInput2"name="camp[location]" value="<%= place.location %>">
+        </div>
+        <div class="mb-3">
+          <label for="formGroupExampleInput2" class="form-label">Enter the price</label>
+          <div class="input-group">
+              <span class="input-group-text" id="price-label">$</span>
+              <input type="number" class="form-control" id="formGroupExampleInput2"  name="camp[price]" value="<%= place.price %>" aria-describedby="price-label">
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="formGroupExampleInput2" class="form-label">Image URL</label>
+          <input type="text" class="form-control" id="formGroupExampleInput2"  name="camp[image]" value="<%= place.image %>">
+        </div>
+        <div class="mb-3">
+          <label for="formGroupExampleInput2" class="form-label">Description:</label>
+          <input type="text" class="form-control" id="formGroupExampleInput2"  name="camp[desctiption]" value="<%= place.description %>">
+        </div>
+        
+          <button type="submit" class="btn btn-warning btn-lg ">SUBMIT</button>
+      </div>
+    </div>
   </form>
+  
+</main>
+  

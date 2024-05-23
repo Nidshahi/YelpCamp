@@ -25,7 +25,7 @@ const fetchImageUrl = async () => {
     });
     const hits = res.data.hits;
     if (hits.length > 0) {
-      const randomIndex = Math.floor(Math.random() * hits.length);
+      const randomIndex = (Math.floor(Math.random() * hits.length));
       return hits[randomIndex].webformatURL;
     } else {
       console.error("No images found in the specified category.");

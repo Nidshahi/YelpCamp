@@ -1,14 +1,21 @@
-
-<%layout('layouts/boilerplate') %>
+  <% layout('layouts/boilerplate') %>
+  <main class="container mt-3 pt-4 mb-3">
+    <div class="row">
+      <div class="col-6 offset-3">
+        <div class="card" style="width: 33rem;">
+          <h1 class="card-title px-2 "><%= loca.title %></h1>
+         <img src="<%= loca.image %>" class="card-img-top" alt="IMAGE HERE">
+     
+         <div class="card-body">
+           <h4 class="card-title text-muted"><%= loca.location %></h4>
+           <p class="card-text">
+             <%= loca.description %>
+           </p>
+           <a href="#" class="btn btn-danger">Delete</a>
+           <a href="/campgrounds/<%= loca.id %>/edit" class="btn btn-primary">Edit </a>
+         </div>
+       </div>
+      </div>
+    </div>
+  </main>
   
-  <h1><%= loca.title %></h1>
-  <div>
-    <img src="<%= loca.image %>" alt="IMAGE HERE ">
-  </div>
-  <h2><%= loca.location %></h2>
-  <h4><%= loca.description %></h4>
-  <a href="/campgrounds/<%= loca.id %>/edit">Edit this</a>
-  <form action="/campgrounds/<%= loca.id %>?_method=DELETE" method="post">
-    <button>Delete</button>
-  </form>
- 

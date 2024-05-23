@@ -1,0 +1,5 @@
+in this layout:
+
+Navbar: It will appear at the top of the page as it comes first in the HTML structure.
+Main Content: It will appear below the navbar and take up the remaining vertical space in the viewport due to the flex: 1 property applied to it. This ensures that the main content area expands to fill the available space.
+Footer: It will appear at the bottom of the page as it comes last in the HTML structure and will be pushed to the bottom by the flexbox layout.
