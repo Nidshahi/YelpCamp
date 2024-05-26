@@ -2,6 +2,7 @@ const mongoose= require('mongoose');
 const camp = require('../models/campground');
 const axios=require('axios');
 const cities = require('./cities');
+
 const {descriptors,places} = require('./seedHelpers');
 
 
