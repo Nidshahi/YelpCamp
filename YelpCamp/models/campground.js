@@ -12,6 +12,15 @@ const camp=new campSchema({
     ref:'Review'
   }]
 });
-
+//mongoose post middleware associated with findByIdAndDelete
+camp.post('findOneAndDelete', async function (doc) {
+  if (doc) {
+      await Review.deleteMany({
+          _id: {
+              $in: doc.reviews
+          }
+      })
+  }
+})
 const Camp=mongoose.model('Campground',camp);
 module.exports=Camp;
