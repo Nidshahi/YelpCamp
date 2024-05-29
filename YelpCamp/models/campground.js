@@ -7,6 +7,10 @@ const camp=new campSchema({
   price:Number,
   description:String,
   location:String,
+  author:{
+    type: campSchema.Types.ObjectId,
+    ref: 'User'
+},
   reviews:[{
     type:campSchema.Types.ObjectId,
     ref:'Review'

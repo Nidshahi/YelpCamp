@@ -51,6 +51,7 @@ const Data = async()=>{
     
       
       const newCamp = new camp({
+        author:'6655db51011c5063127d08c3',
         location: `${cities[randomCity].city},${cities[randomCity].state}`,
         title: `${seedRandom(descriptors)} ${seedRandom(places)}`,
         image: imageUrl, // Use the fetched image URL
