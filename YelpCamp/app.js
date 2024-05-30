@@ -58,8 +58,9 @@ app.use(methodOverride('_method'));
 // It assigns these messages to res.locals.success and res.locals.error, respectively, making them available to your templates.
 // It then calls next() to pass control to the next middleware or route handler.
 app.use((req, res, next) => {
-    console.log(req.session);
+    
     res.locals.activeUser = req.user;
+    
     res.locals.success = req.flash('success');
     res.locals.error = req.flash('error');
     next();
