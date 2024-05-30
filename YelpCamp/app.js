@@ -1,3 +1,8 @@
+if(process.env.NODE_ENV!=="production"){
+    require('dotconfig').config();
+}
+//A .env file stores environment variables, such as configuration settings, for an application in a simple text format.
+
 const express = require('express');
 const app = express();
 const path = require('path');
@@ -70,7 +75,9 @@ app.use((req, res, next) => {
 //     const newUser =await User.register(user,'monkey');
 //     res.send(newUser);
 // })
+
 app.use('/campgrounds', campgrounds);
+
 app.use('/campgrounds/:id/reviews', reviews);
 app.use('',userRoutes);
 app.get('/let', (req, res) => {
