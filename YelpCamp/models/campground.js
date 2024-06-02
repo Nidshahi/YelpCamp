@@ -3,7 +3,10 @@ const campSchema= mongoose.Schema;
 const{Review}=require('./review');
 const camp=new campSchema({
   title:String,
-  image:String,
+  image:[{
+    url:String,
+    filepath:String
+  }],
   price:Number,
   description:String,
   location:String,

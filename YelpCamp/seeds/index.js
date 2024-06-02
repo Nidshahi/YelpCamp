@@ -54,9 +54,21 @@ const Data = async()=>{
         author:'6655db51011c5063127d08c3',
         location: `${cities[randomCity].city},${cities[randomCity].state}`,
         title: `${seedRandom(descriptors)} ${seedRandom(places)}`,
-        image: imageUrl, // Use the fetched image URL
+        // Use the fetched image URL
         description: 'This is a sample description for the campground.',
-        price
+        price,
+        image:[
+          {
+            url: 'https://res.cloudinary.com/dnvc80evf/image/upload/v1717324615/YelpCamp/mrodvmrdwqexlccfipq3.jpg',
+            filepath: 'YelpCamp/mrodvmrdwqexlccfipq3'
+            
+          },
+          {
+            url: 'https://res.cloudinary.com/dnvc80evf/image/upload/v1717324615/YelpCamp/ffgd3by1eeo9cepwnbss.jpg',
+            filepath: 'YelpCamp/ffgd3by1eeo9cepwnbss'
+            
+          }
+        ]
       });
       console.log(newCamp);
       

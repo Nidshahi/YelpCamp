@@ -1,5 +1,5 @@
 if(process.env.NODE_ENV!=="production"){
-    require('dotconfig').config();
+    require('dotenv').config();
 }
 //A .env file stores environment variables, such as configuration settings, for an application in a simple text format.
 
@@ -54,6 +54,7 @@ app.set('views', path.join(__dirname, 'views'));
 //we are telling express to access static folder 'public'
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true }));
+
 app.use(methodOverride('_method'));
 
 //app.use: This function is used to set up middleware in an Express.js application
@@ -93,7 +94,7 @@ app.use((err, req, res, next) => {
     
     res.status(statusCode).render('error', { err });
 })
-
-app.listen(3000, () => {
+const PORT=process.env.PORT;
+app.listen(PORT, () => {
     console.log('Serving on port 3000');
 });
