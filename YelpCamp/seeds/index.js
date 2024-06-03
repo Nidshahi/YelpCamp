@@ -44,7 +44,7 @@ const seedRandom = (array)=>array[Math.floor(Math.random()*array.length)];
 const Data = async()=>{
   try{
     await camp.deleteMany({});
-    for (let i = 0; i < 50; i++) {
+    for (let i = 0; i < 200; i++) {
       const randomCity = Math.floor(Math.random() * 1000);
       const price = Math.floor(Math.random() * 40) + 10;
       const imageUrl= await fetchImageUrl();
@@ -54,6 +54,7 @@ const Data = async()=>{
         author:'6655db51011c5063127d08c3',
         location: `${cities[randomCity].city},${cities[randomCity].state}`,
         title: `${seedRandom(descriptors)} ${seedRandom(places)}`,
+        geometry: { type: 'Point', coordinates: [ cities[randomCity].longitude,cities[randomCity].latitude ] },
         // Use the fetched image URL
         description: 'This is a sample description for the campground.',
         price,
@@ -70,8 +71,8 @@ const Data = async()=>{
           }
         ]
       });
+     
       console.log(newCamp);
-      
      await newCamp.save();
      
   }
