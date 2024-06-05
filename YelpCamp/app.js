@@ -1,6 +1,7 @@
-if(process.env.NODE_ENV!=="production"){
-    require('dotenv').config();
-}
+// if(process.env.NODE_ENV!=="production"){
+//     require('dotenv').config();
+// }
+require('dotenv').config();
 //A .env file stores environment variables, such as configuration settings, for an application in a simple text format.
 
 const express = require('express');
@@ -14,30 +15,88 @@ const userRoutes = require('./routes/user');
 const campgrounds = require('./routes/campground');
 const reviews = require('./routes/reviews');
 const session = require('express-session');
+const MongoStore = require('connect-mongo');
 const flash = require('connect-flash');
 const passport = require('passport');
 const LocalStrategy=require('passport-local');
 const User=require('./models/user');
-
-mongoose.connect('mongodb://localhost:27017/Yelp-App');
+const helmet = require('helmet');
+const dataURL=process.env.data_URL || 'mongodb://localhost:27017/Yelp-App';
+const mongoSanitize = require('express-mongo-sanitize');
+mongoose.connect(dataURL);
 
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error:"));
 db.once("open", () => {
     console.log("Database connected");
 });
+const store = MongoStore.create({
+    mongoUrl: dataURL,
+    touchAfter: 24 * 60 * 60,
+    crypto: {
+        secret: 'thisshouldbeabettersecret!'
+    }
+});
 const sessionConfig = {
+    store,
+    name: 'session',
     secret: 'thisshouldbeabettersecret!',
     resave: false,
     saveUninitialized: true,
     cookie: {
         //client side cannot interfere with our cookie
         httpOnly: true,
+        //secure:true,
         expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
         maxAge: 1000 * 60 * 60 * 24 * 7
     }
 }
-
+// Use Helmet!
+app.use(helmet({contentSecurityPolicy:false}));
+// const scriptSrcUrls = [
+//     "https://stackpath.bootstrapcdn.com/",
+//     "https://api.tiles.mapbox.com/",
+//     "https://api.mapbox.com/",
+//     "https://kit.fontawesome.com/",
+//     "https://cdnjs.cloudflare.com/",
+//     "https://cdn.jsdelivr.net",
+// ];
+// const styleSrcUrls = [
+//     "https://kit-free.fontawesome.com/",
+//     "https://stackpath.bootstrapcdn.com/",
+//     "https://api.mapbox.com/",
+//     "https://api.tiles.mapbox.com/",
+//     "https://fonts.googleapis.com/",
+//     "https://use.fontawesome.com/",
+// ];
+// const connectSrcUrls = [
+//     "https://api.mapbox.com/",
+//     "https://a.tiles.mapbox.com/",
+//     "https://b.tiles.mapbox.com/",
+//     "https://events.mapbox.com/",
+// ];
+// const fontSrcUrls = [];
+// app.use(
+//     helmet.contentSecurityPolicy({
+//         directives: {
+//             defaultSrc: [],
+//             connectSrc: ["'self'", ...connectSrcUrls],
+//             scriptSrc: ["'unsafe-inline'", "'self'", ...scriptSrcUrls],
+//             styleSrc: ["'self'", "'unsafe-inline'", ...styleSrcUrls],
+//             workerSrc: ["'self'", "blob:"],
+//             objectSrc: [],
+//             imgSrc: [
+//                 "'self'",
+//                 "blob:",
+//                 "data:",
+//                 "https://res.cloudinary.com/douqbebwk/", //SHOULD MATCH YOUR CLOUDINARY ACCOUNT! 
+//                 "https://images.unsplash.com/",
+//             ],
+//             fontSrc: ["'self'", ...fontSrcUrls],
+//         },
+//     })
+// );
+app.use(mongoSanitize());
 app.use(session(sessionConfig));
 app.use(flash());
 //

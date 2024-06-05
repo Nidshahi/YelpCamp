@@ -3,9 +3,11 @@ maptilersdk.config.apiKey =mapToken;
 const map = new maptilersdk.Map({
   container: 'cluster-map',
         zoom: 2,
-        center: [0, 20],
+        center: [-70, 36],
         style: maptilersdk.MapStyle.DATAVIZ.DARK
+        
 });
+
 map.on('load', function () {
   // add a clustered GeoJSON source for a sample set of campgrounds
   map.addSource('campgrounds', {
