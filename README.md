@@ -1,1 +1,1 @@
-In this particular Section, I am going to sum up my all learning in building amazing projects..
+YelpCamp is a web application that allows users to create, share, and review campgrounds with rich features like authentication, image upload, and interactive maps.
